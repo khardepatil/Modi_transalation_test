@@ -91,7 +91,7 @@ Model.fit_generator(
 	validation_data=validation_generator,
 	validation_steps=nb_validation_samples // batch_size)
 
-Model.save_weights('first_try.h5')
+Model.save_weights('demo_try.h5')
 
 img_pred = image.load_img('bha_26.jpg', target_size = (100,100))
 img_pred = image.img_to_array(img_pred)
