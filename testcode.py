@@ -1,3 +1,5 @@
+
+
 from keras.preprocessing.image import ImageDataGenerator
 from keras.datasets import mnist
 from keras.models import Sequential
@@ -47,6 +49,11 @@ validation_generator = test_datagen.flow_from_directory(
 
 
 
+#model = tf.keras.Sequential([
+#                    tf.keras.layers.Flatten(input_shape=(100,100,1)),
+#                    tf.keras.layers.Dense(activation='relu'),
+#                    tf.keras.layers.Dense((28,28), activation='softmax')                        
+#                ])
 
 
 
@@ -54,8 +61,6 @@ Model = Sequential()
 Model.add(Conv2D(32, (3,3), input_shape=input_shape))
 Model.add(Activation('relu')) 
 Model.add(MaxPooling2D(pool_size=(2,2)))
-
-Model.summary()
 
 Model.add(Conv2D(32, (3,3)))
 Model.add(Activation('relu'))
@@ -75,23 +80,33 @@ Model.add(Activation('sigmoid'))
 
 Model.summary()
 
+#Model.compile(loss='categorial_crossentropy' , optimizer='rmsprop',
+#metrics=['accuracy'])
+#Model.fit(X_train, Y_train, batch_size=BATCH_SIZE,
+#epochs=NB_EPOCH, validation_split=VALIDATION_SPLIT,
+#verbose=VERBOSE)
+#score = model.evaluate(X_test,Y_test,
+#batch_size=BATCH_SIZE, verbose=VERBOSE)
+#print("Test Score::", score[0])
+#print('test accuracy:',score[1])
+
 Model.compile(loss='binary_crossentropy',
 		optimizer='rmsprop',
 		metrics=['accuracy'])
 
-Model.fit(
-    x = np.array(test_datagen),
-    y = np.array(validation_generator),
-    batch_size = 20,
-    epochs = 50)
+#Model.fit(
+#   x = np.array(test_datagen),
+#   y = np.array(validation_generator),
+#   batch_size = 20,
+#   epochs = 3)
 
-Model.fit_generator(
+Model.evaluate(
 	train_generator,
 	epochs=50,
 	validation_data=validation_generator,
 	validation_steps=nb_validation_samples // batch_size)
 
-Model.save_weights('demo_try.h5')
+Model.save_weights('first_try.h5')
 
 img_pred = image.load_img('bha_26.jpg', target_size = (100,100))
 img_pred = image.img_to_array(img_pred)
