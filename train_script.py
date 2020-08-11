@@ -9,7 +9,7 @@ from tensorflow import keras
 from tensorflow.keras import layers
 from tensorflow.keras.models import Sequential
 
-data_dir = 'all_images'
+data_dir = '/content/Modi_transalation_test/all_images'
 data_dir = pathlib.Path(data_dir)
 image_count = len(list(data_dir.glob('*/*.jpg')))
 print(image_count)
@@ -108,7 +108,7 @@ img = keras.preprocessing.image.load_img(
 )
 '''
 #from PIL import Image
-image_path = 'Test/bha_26.jpg'
+image_path = '/content/Modi_transalation_test/Test/d_26.png'
 #image = Image.open(image)
 img = keras.preprocessing.image.load_img(
     image_path, target_size=(100, 100)
